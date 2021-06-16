@@ -13,6 +13,8 @@
         <thead>
             <tr>
                 <th scope="col">ホテル</th>
+                <th scope="col">チェックイン</th>
+                <th scope="col">チェックアウト</th>
                 <th scope="col">タイプ</th>
                 <th scope="col">人数</th>
                 <th scope="col">管理</th>
@@ -22,6 +24,8 @@
             @foreach($reservations as $reservation)
             <tr>
                 <td>{{ $reservation->room->hotel['name'] }}</td>
+                <td>{{ $reservation->check_in }}</td>
+                <td>{{ $reservation->check_out }}</td>
                 <td>{{ $reservation->room['type'] }}</td>
                 <td>{{ $reservation->num_of_guests }}</td>
                 <td><a href="{{ route('reservations.index') }}/{{ $reservation->id }}/edit" class="btn btn-sm btn-success">編集</a></td>
