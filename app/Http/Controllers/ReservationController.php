@@ -19,7 +19,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::with('room', 'room.hotel')->get();
+        
+        $paginate = config('const.PAGINATE.paginate');
+        $reservations = Reservation::with('room', 'room.hotel')->paginate(10);
 
         return view('reservations.index')->with('reservations', $reservations);
     }
