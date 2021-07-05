@@ -29,5 +29,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $reservations->links() }}
 </div>
 @endsection
