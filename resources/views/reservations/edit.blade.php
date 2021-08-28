@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card my-5">
         <div class="card-header">
-             <h2>{{ $hotel_info->name }} - <small class="text-muted">{{ $hotel_info->location }}</small></h2>
+            <h2>{{ $hotel_info->name }} - <small class="text-muted">{{ $hotel_info->location }}</small></h2>
         </div>
         <div class="card-body">
             <h5 class="card-title"></h5>
@@ -17,8 +17,11 @@
                         <div class="form-group">
                             <label for="room">部屋のタイプ</label>
                             <select class="form-control" name="room_id" value="{{old('room_id', $reservation->room_id)}}">
+                                <option value="{{old('room_id', $reservation->room_id)}}">{{$reservation->room->type}} - ¥{{$reservation->room->price}}</option>
                                 @foreach($hotel_info->rooms as $option)
+                                @if($reservation->room_id !== $option->id)
                                 <option value="{{$option->id}}">{{$option->type}} - ¥{{$option->price}}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
@@ -42,11 +45,12 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="id" value="{{$reservation->id}}">
                 <button type="submit" class="btn btn-lg btn-primary">送信</button>
             </form>
         </div>
     </div>
-     <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST">
+    <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST">
         @method('DELETE')
         @csrf
         <p class="text-right">

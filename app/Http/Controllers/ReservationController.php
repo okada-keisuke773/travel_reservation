@@ -89,9 +89,10 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        $reservation->user_id = 1;
 
-        $reservation->save();
+        $reservation_form = $request->all();
+
+        $reservation->fill($reservation_form)->save();
         return redirect()->route('reservations.index')->with('success', 'あなたの予約の更新ができました！');
     }
 
@@ -108,5 +109,4 @@ class ReservationController extends Controller
 
         return redirect()->route('reservations.index')->with('success', '予約を取り消しました！');
     }
-
 }
