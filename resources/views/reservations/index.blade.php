@@ -3,10 +3,10 @@
 @section('content')
 <div class="container mt-5">
     @if(!empty(Session::get('success')))
-        <div class="alert alert-success">{{Session::get('success')}}</div>
+    <div class="alert alert-success">{{Session::get('success')}}</div>
     @endif
     @if(!empty(Session::get('error')))
-        <div class="alert alert-danger">{{Session::get('error')}}</div>
+    <div class="alert alert-danger">{{Session::get('error')}}</div>
     @endif
     <h2>予約一覧</h2>
     <table class="table mt-3">
